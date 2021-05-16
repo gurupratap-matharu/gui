@@ -10,6 +10,24 @@ from kivy.uix.widget import Widget
 from kivy.vector import Vector
 
 
+class PongPaddle(Widget):
+    """Represents a ping pong bat or a paddle in our lingo."""
+
+    score = NumericProperty(0)
+
+    def bounce_ball(self, ball):
+        """
+        Bounces of the ball when the ball touches the paddle.
+        """
+
+        if self.collide_widget(ball):
+            vx, vy = ball.velocity
+            offset = (ball.center_y - self.center_y) / (self.height / 2)
+            bounced = Vector(-1 * vx, vy)  # reverse direction
+            vel = bounced * 1.1  # give a slight boost
+            ball.velocity = vel.x, vel.y + offset  # offset ???
+
+
 class PongBall(Widget):
     """Represent the ball widget in the game"""
 
@@ -31,16 +49,17 @@ class PongGame(Widget):
     """
 
     ball = ObjectProperty(None)
+    player1 = ObjectProperty(None)
+    player2 = ObjectProperty(None)
 
-    def serve_ball(self):
+    def serve_ball(self, vel=(4, 0)):
         """
         Anytime the game is started or a player scores a point
         a ball serve is done to give random motion to the static ball.
         """
-        print('veer self.ball.center: ', self.ball.center)
-        print('veer self.center: ', self.center)
+
         self.ball.center = self.center
-        self.ball.velocity = Vector(4, 0).rotate(randint(0, 360))
+        self.ball.velocity = vel
 
     def update(self, dt):
         """
@@ -55,6 +74,14 @@ class PongGame(Widget):
         # bounce of left and right
         if (self.ball.x < 0) or (self.ball.right > self.width):
             self.ball.velocity_x *= -1
+
+    def on_touch_move(self, touch):
+        if touch.x < self.width/3:
+            # its a touch for the left player ;D
+            self.player1.center_y = touch.y
+        if touch.x > self.width - self.width/3:
+            # its a touch for the right player ;D
+            self.player2.center_y = touch.y
 
 
 class PongApp(App):
