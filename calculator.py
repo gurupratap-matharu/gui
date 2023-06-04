@@ -46,7 +46,6 @@ class MainApp(App):
 
     def on_button_press(self, instance):
         command = instance.text
-        current_solution = self.solution.text
         is_operator = command in self.operators
 
         if command == "C":
