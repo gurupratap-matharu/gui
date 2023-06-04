@@ -1,3 +1,1 @@
 kivy[full]
-kivy_examples
-pygame
