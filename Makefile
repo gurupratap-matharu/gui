@@ -15,19 +15,22 @@ clean:
 	rm -rf __pycache__ .pytest_cache
 
 install:
-	pip install -r requirements.txt
+	poetry install
+
+update:
+	poetry update
 
 isort:
 	@echo "isort..."
-	@python -m isort . --profile black
+	@poetry run isort . --profile black
 
 format:
 	@echo "black..."
-	@python -m black . 
+	@poetry run black . 
 
 lint: isort format
 	@echo "flake8..."
-	@python -m flake8 .
+	@poetry run flake8 .
 
 ci: lint 
 
