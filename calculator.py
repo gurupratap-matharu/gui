@@ -1,7 +1,7 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
 
 
 class MainApp(App):
@@ -40,7 +40,6 @@ class MainApp(App):
         equals_button = Button(text="=", pos_hint=self.pos_hint)
         equals_button.bind(on_press=self.on_solution_press)
 
-
         layout.add_widget(equals_button)
 
         return layout
@@ -58,7 +57,7 @@ class MainApp(App):
                 # don't add two operators
                 return
             else:
-                if self.solution.text == '0':
+                if self.solution.text == "0":
                     self.solution.text = command
                 else:
                     self.solution.text += command
