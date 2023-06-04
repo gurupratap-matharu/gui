@@ -4,8 +4,7 @@ from random import randint
 
 from kivy.app import App
 from kivy.clock import Clock
-from kivy.properties import (NumericProperty, ObjectProperty,
-                             ReferenceListProperty)
+from kivy.properties import NumericProperty, ObjectProperty, ReferenceListProperty
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 
@@ -76,10 +75,10 @@ class PongGame(Widget):
             self.ball.velocity_x *= -1
 
     def on_touch_move(self, touch):
-        if touch.x < self.width/3:
+        if touch.x < self.width / 3:
             # its a touch for the left player ;D
             self.player1.center_y = touch.y
-        if touch.x > self.width - self.width/3:
+        if touch.x > self.width - self.width / 3:
             # its a touch for the right player ;D
             self.player2.center_y = touch.y
 
