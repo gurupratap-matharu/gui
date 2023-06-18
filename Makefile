@@ -35,7 +35,7 @@ lint: isort format
 ci: lint 
 
 run:
-	python calculator.py
+	python hello.py
 
 reload:
 	@echo "reloading..."
