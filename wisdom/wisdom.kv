@@ -1,0 +1,31 @@
+<MyRootWidget>:
+    orientation: "vertical"
+    Label:
+        id: quote
+        markup: True
+        text: "[color=ca921a]Press button[/color]"
+        text_size: self.size
+        font_size: '28sp'
+        italic: True
+        line_height: 2
+        halign: 'center'
+        valign: 'middle'
+        padding: 100, 0
+        canvas.before:
+            Color:
+                rgba: .96, .89, .73, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+
+    Button:
+        markup: True
+        text: "[color=ffffff]Motivate Me![/color]"
+        size_hint_y: 0.2
+        on_press: root.on_button_press()
+        on_release: print("ahhh")
+        on_state:
+            print(f"my current state is {self.state}")
+        background_normal: ''
+        background_color: (.79, .57, .10, 1)
