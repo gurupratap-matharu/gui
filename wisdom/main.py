@@ -3,7 +3,6 @@ import logging
 import kivy
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-
 from quotes import get_quote
 
 kivy.require("2.2.0")
